@@ -1,0 +1,87 @@
+body {
+  min-height: 100vh;
+  background: #f8f9fa;
+  overflow-x: hidden;
+}
+
+.content {
+  min-width: 0;
+}
+
+main {
+  overflow-x: hidden;
+}
+
+.order-stepper {
+  --progress: 0;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: start;
+  padding: 0.25rem 0 0.75rem;
+}
+
+.order-stepper::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  height: 2px;
+
+  left: 10%;
+  right: 10%;
+
+  background: linear-gradient(#1f1d17, #1f1d17) left /
+      calc(var(--progress) * 1%) 100% no-repeat,
+    #e6dfd2;
+}
+
+.order-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding: 0;
+  color: #8a8276;
+  gap: 0.35rem;
+}
+
+.order-step-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 2px solid #d6d1c7;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #b0a79a;
+}
+
+.order-step.is-complete .order-step-dot {
+  background: #1f1d17;
+  border-color: #1f1d17;
+  color: #fff;
+}
+
+.order-step.is-active .order-step-dot {
+  border-color: #1f1d17;
+  color: #1f1d17;
+}
+
+.order-step.is-complete,
+.order-step.is-active {
+  color: #1f1d17;
+}
+
+@media (max-width: 992px) {
+  .order-stepper {
+    gap: 0.5rem;
+  }
+
+  .order-step small {
+    font-size: 0.75rem;
+  }
+}
